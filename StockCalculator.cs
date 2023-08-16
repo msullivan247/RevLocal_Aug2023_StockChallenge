@@ -4,13 +4,13 @@ public class StockCalculator
 {
     public static int GetGreatestPossibleProfit(IList<int> stockPrices)
     {
-        var firstPrice = stockPrices.First();
-        var remainingPrices = stockPrices.Skip(1).ToArray();
-
-        if (!stockPrices.Any())
+        if (stockPrices.Count <= 1)
         {
             return 0;
         }
+
+        var firstPrice = stockPrices.First();
+        var remainingPrices = stockPrices.Skip(1).ToArray();
 
         var possibleProfit = Math.Max(remainingPrices.Max() - firstPrice, 0);
 
