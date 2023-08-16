@@ -2,8 +2,18 @@
 
 public class StockCalculator
 {
-    public static int GetGreatestPossibleProfit(IEnumerable<int> stockPrices)
+    public static int GetGreatestPossibleProfit(IList<int> stockPrices)
     {
-        throw new NotImplementedException();
+        var firstPrice = stockPrices.First();
+        var remainingPrices = stockPrices.Skip(1).ToArray();
+
+        if (!stockPrices.Any())
+        {
+            return 0;
+        }
+
+        var possibleProfit = Math.Max(remainingPrices.Max() - firstPrice, 0);
+
+        return Math.Max(possibleProfit, GetGreatestPossibleProfit(remainingPrices));
     }
 }
